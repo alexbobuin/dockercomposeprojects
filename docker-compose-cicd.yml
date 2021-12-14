@@ -1,0 +1,22 @@
+---
+version: '3.8'
+services:
+  jenkins:
+    image: jenkins/jenkins
+    ports:
+      - 7070:8080
+
+  qaserver:
+    image: tomee
+    ports:
+      - 5050:8080
+    links:
+      - jenkins:ci-cd
+
+  prodserver:
+    image: tomee
+    ports:
+      - 6060:8080
+    links:
+      - jenkins:ci-cd
+...
